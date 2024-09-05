@@ -1,0 +1,1 @@
+# pp.3-school-management-system initgit add README.mdgit commit -m first commitgit branch -M maingit remote add origin https://github.com/linkon63/pp.3-school-management-system.gitgit push -u origin main
