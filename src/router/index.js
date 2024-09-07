@@ -1,15 +1,16 @@
 import AppLayout from '@/layout/AppLayout.vue';
+import Login from '@/views/pages/auth/Login.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
-            path: '/',
+            path: '/appLayout',
             component: AppLayout,
             children: [
                 {
-                    path: '/',
+                    path: '/dashboard',
                     name: 'dashboard',
                     component: () => import('@/views/Dashboard.vue')
                 },
@@ -118,7 +119,7 @@ const router = createRouter({
         },
 
         {
-            path: '/auth/login',
+            path: '/',
             name: 'login',
             component: () => import('@/views/pages/auth/Login.vue')
         },

@@ -8,6 +8,7 @@
         "lint": "eslint --fix . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
     },
     "dependencies": {
+        "@dotlottie/player-component": "^2.7.12",
         "@primevue/themes": "^4.0.0",
         "chart.js": "3.3.2",
         "primeicons": "^6.0.1",
