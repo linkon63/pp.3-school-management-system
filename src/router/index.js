@@ -1,5 +1,4 @@
 import AppLayout from '@/layout/AppLayout.vue';
-import Login from '@/views/pages/auth/Login.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
@@ -108,6 +107,16 @@ const router = createRouter({
             ]
         },
         {
+            path: '/',
+            name: 'WelcomePage',
+            component: () => import('@/views/pages/WelcomePage.vue')
+        },
+        {
+            path: '/ChoicesLogin',
+            name: 'ChoicesLogin',
+            component: () => import('@/views/pages/ChoicesLogin.vue')
+        },
+        {
             path: '/landing',
             name: 'landing',
             component: () => import('@/views/pages/Landing.vue')
@@ -119,9 +128,29 @@ const router = createRouter({
         },
 
         {
-            path: '/',
-            name: 'login',
-            component: () => import('@/views/pages/auth/Login.vue')
+            path: '/adminlogin',
+            name: 'adminlogin',
+            component: () => import('@/views/pages/auth/adminAuth/AdminLogin.vue')
+        },
+        {
+            path: '/studentlogin',
+            name: 'studentlogin',
+            component: () => import('@/views/pages/auth/studentAuth/StudentLogin.vue')
+        },
+        {
+            path: '/studentsignup',
+            name: 'studentsignup',
+            component: () => import('@/views/pages/auth/studentAuth/StudentSignUp.vue')
+        },
+        {
+            path: '/teacherlogin',
+            name: 'teacherlogin',
+            component: () => import('@/views/pages/auth/teacherAuth/TeacherLogin.vue')
+        },
+        {
+            path: '/teachersignup',
+            name: 'teachersignup',
+            component: () => import('@/views/pages/auth/teacherAuth/TeacherSignUp.vue')
         },
         {
             path: '/auth/access',
