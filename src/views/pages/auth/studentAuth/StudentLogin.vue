@@ -1,9 +1,11 @@
 <script setup>
+import { db } from '@/components/firebaseConfig/FirebaseConfig';
 import FloatingConfigurator from '@/components/FloatingConfigurator.vue';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
-const email = ref('');
-const password = ref('');
+// const email = ref('');
+// const password = ref('');
 const checked = ref(false);
 
 const state = reactive({
@@ -11,12 +13,37 @@ const state = reactive({
     password: ''
 });
 const router = useRouter();
-const loginUser = () => {
+const loginUser = async () => {
     console.log('login', state.email);
-    if ((state.email = 'admin123@gmail.com') && (state.password = '1234')) {
-        sessionStorage.setItem('email', state.email);
-        router.push('/dashboard');
+    try {
+        // Query the Firestore 'users' collection for a document matching the email
+        const q = query(collection(db, 'studentlogin'), where('email', '==', state.email));
+        const querySnapshot = await getDocs(q);
+
+        let userFound = false;
+
+        // Loop through the results to check the password
+        querySnapshot.forEach((doc) => {
+            const userData = doc.data();
+
+            if (userData.password === state.password) {
+                userFound = true;
+                console.log('Login successful:', doc.id, '=>', userData);
+                router.push('/dashboard');
+                // You can handle storing user session or token here
+            }
+        });
+
+        if (!userFound) {
+            console.log('Invalid email or password');
+        }
+    } catch (error) {
+        console.error('Error logging in:', error);
     }
+    // if ((state.email = 'admin123@gmail.com') && (state.password = '1234')) {
+    //     sessionStorage.setItem('email', state.email);
+    //     router.push('/dashboard');
+    // }
 };
 </script>
 

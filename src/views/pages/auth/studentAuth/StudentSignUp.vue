@@ -7,13 +7,17 @@ import { useRouter } from 'vue-router';
 // const email = ref('');
 // const password = ref('');
 const checked = ref(false);
-
+const dropdownValues = ref([{ name: 'A+' }, { name: 'A-' }, { name: 'B+' }, { name: 'B-' }, { name: 'AB+' }, { name: 'AB-' }, { name: 'O+' }, { name: 'O-' }]);
 const state = reactive({
     email: '',
     name: '',
     mobile: '',
     studentid: '',
     class: '',
+    birth:'',
+    religion:'',
+    radioValue:'',
+    blood:'',
     password: ''
 });
 const router = useRouter();
@@ -24,11 +28,15 @@ const studentsignup = async () => {
         mobile: state.mobile,
         id: state.studentid,
         class: state.class,
+        birth: state.birth,
+        religion: state.religion,
+        radioValue: state.radioValue,
+        blood: state.blood,
         password: state.password
     });
     console.log('addProducts', docRef.id);
 
-    (state.name = ''), (state.email = ''), (state.mobile = ''), (state.id = 0), (state.class = ''), (state.password = '');
+    (state.name = ''), (state.email = ''), (state.mobile = ''), (state.id = 0), (state.id = 0), (state.class = ''), (state.password = '');
 
     const querySnapshot = await getDocs(collection(db, 'teacherlogin'));
     const productArray = [];
@@ -382,10 +390,48 @@ const studentsignup = async () => {
                             <InputText id="email1" type="text" placeholder="Email address" class="w-full md:w-[30rem] mb-4" v-model="state.email" />
                             <label for="mobile" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Mobile</label>
                             <InputText id="mobile" type="phone" placeholder="mobile" class="w-full md:w-[30rem] mb-4" v-model="state.mobile" />
-                            <label for="class" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Class</label>
-                            <InputText id="class" type="number" placeholder="Class" class="w-full md:w-[30rem] mb-4" v-model="state.class" />
-                            <label for="studentid" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Student Id</label>
-                            <InputText id="studentid" type="number" placeholder="Student Id" class="w-full md:w-[30rem] mb-4" v-model="state.studentid" />
+                            <div class="flex gap-8 justify-between">
+                                <div>
+                                    <label for="class" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Class</label>
+                                    <InputText id="class" type="number" placeholder="Class" class="w-1/2 md:w-[12rem] mb-4" v-model="state.class" />
+                                </div>
+                                <div>
+                                    <label for="studentid" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Student Id</label>
+                                    <InputText id="studentid" type="number" placeholder="Student Id" class="w-1/2 md:w-[12rem] mb-4" v-model="state.studentid" />
+                                </div>
+                            </div>
+
+                            <div class="flex gap-8 justify-between">
+                                <div>
+                                    <label for="birth" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Date Of Birth</label>
+                                    <InputText id="birth" type="date" placeholder="Date Of Birth" class="w-1/2 md:w-[12rem] mb-4" v-model="state.birth" />
+                                </div>
+                                <div>
+                                    <label for="religion" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Religion</label>
+                                    <InputText id="religion" type="text" placeholder="Religion" class="w-1/2 md:w-[12rem] mb-4" v-model="state.religion" />
+                                </div>
+                            </div>
+
+                            <div class="flex gap-8 justify-between">
+                                <div>
+                                    <div class="font-semibold text-xl">Blood Group</div>
+                                    <Select v-model="blood" :options="dropdownValues" optionLabel="name" placeholder="Select" />
+                                </div>
+                                <div>
+                                    <label for="religion" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Religion</label>
+                                    <div class="flex flex-col md:flex-row gap-4">
+                                        <div class="flex items-center">
+                                            <RadioButton id="option1" name="option" value="male" v-model="state.radioValue" />
+                                            <label for="option1" class="leading-none ml-2">male</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <RadioButton id="option2" name="option" value="female" v-model="state.radioValue" />
+                                            <label for="option2" class="leading-none ml-2">female</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
 
                             <label for="password1" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2">Password</label>
                             <Password id="password1" v-model="state.password" placeholder="Password" :toggleMask="true" class="mb-4" fluid :feedback="false"></Password>
