@@ -112,6 +112,11 @@ const router = createRouter({
             component: () => import('@/views/pages/WelcomePage.vue')
         },
         {
+            path: '/studentdashboard',
+            name: 'StudentDashboard',
+            component: () => import('@/views/pages/studentDashboard/StudentDashboard.vue')
+        },
+        {
             path: '/ChoicesLogin',
             name: 'ChoicesLogin',
             component: () => import('@/views/pages/ChoicesLogin.vue')
