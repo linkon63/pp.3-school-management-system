@@ -67,6 +67,7 @@ const classSchedule = ref([
 </script>
 
 <template>
+    <Sidebar/>
     <div class="p-6 bg-white shadow-md rounded-lg">
         <h2 class="text-2xl font-bold mb-6">Class Schedule</h2>
         <div class="grid grid-rows-1 lg:grid-rows-5 gap-2">
@@ -74,9 +75,9 @@ const classSchedule = ref([
                 <h3 class="font-bold text-lg mb-2">{{ day.day }}</h3>
 
                 <div class="grid grid-cols-7">
-                    <div v-for="(classTime, classIndex) in day.classes" :key="classIndex" class="bg-white p-2 rounded-md shadow mb-2 grid-cols-1 justify-between items-center">
-                        <p class="text-gray-600 font-semibold text-lg">{{ classTime.class }}</p>
-                        <h4 class="text-sm">{{ classTime.time }}</h4>
+                    <div v-for="(classTime, classIndex) in day.classes" :key="classIndex" class="bg-white p-2 rounded-md shadow mb-2 grid-cols-1 justify-between items-center border-2">
+                        <p class="text-gray-600 font-semibold text-[8px] sm:text-lg">{{ classTime.class }}</p>
+                        <h4 class="text-[8px] sm:text-sm">{{ classTime.time }}</h4>
                     </div>
                 </div>
                 <!-- Tiffin Break for each day -->

@@ -1,4 +1,6 @@
 import AppLayout from '@/layout/AppLayout.vue';
+import LayoutStudent from '@/views/pages/studentDashboard/LayoutStudent.vue';
+import LayoutTeacher from '@/views/pages/teacherDashboard/LayoutTeacher.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
@@ -107,15 +109,88 @@ const router = createRouter({
             ]
         },
         {
+            path: '/layoutStudent',
+            component: LayoutStudent,
+            children: [
+                {
+                    path: '/studentdashboard',
+                    name: 'StudentDashboard',
+                    component: () => import('@/views/pages/studentDashboard/StudentDashboard.vue')
+                },
+                {
+                    path: '/calenders',
+                    name: 'calenders',
+                    component: () => import('@/views/pages/shared/Calenders.vue')
+                },
+                {
+                    path: '/classrouting',
+                    name: 'classrouting',
+                    component: () => import('@/views/pages/shared/ClassRouting.vue')
+                },
+                {
+                    path: '/eventlist',
+                    name: 'eventlist',
+                    component: () => import('@/views/pages/shared/EventList.vue')
+                },
+                {
+                    path: '/examlist',
+                    name: 'examlist',
+                    component: () => import('@/views/pages/shared/ExamList.vue')
+                },
+                {
+                    path: '/notice',
+                    name: 'notice',
+                    component: () => import('@/views/pages/shared/Notice.vue')
+                }
+            ]
+        },
+        {
+            path: '/layoutTeacher',
+            component: LayoutTeacher,
+            children: [
+                {
+                    path: '/teacherdashboard',
+                    name: 'TeacherDashboard',
+                    component: () => import('@/views/pages/teacherDashboard/TeacherDashboard.vue')
+                },
+                {
+                    path: '/calenders',
+                    name: 'calenders',
+                    component: () => import('@/views/pages/shared/Calenders.vue')
+                },
+                {
+                    path: '/attendance',
+                    name: 'attendance',
+                    component: () => import('@/views/pages/teacherDashboard/Attendance.vue')
+                },
+                {
+                    path: '/classrouting',
+                    name: 'classrouting',
+                    component: () => import('@/views/pages/shared/ClassRouting.vue')
+                },
+                {
+                    path: '/eventlist',
+                    name: 'eventlist',
+                    component: () => import('@/views/pages/shared/EventList.vue')
+                },
+                {
+                    path: '/examlist',
+                    name: 'examlist',
+                    component: () => import('@/views/pages/shared/ExamList.vue')
+                },
+                {
+                    path: '/notice',
+                    name: 'notice',
+                    component: () => import('@/views/pages/shared/Notice.vue')
+                }
+            ]
+        },
+        {
             path: '/',
             name: 'WelcomePage',
             component: () => import('@/views/pages/WelcomePage.vue')
         },
-        {
-            path: '/studentdashboard',
-            name: 'StudentDashboard',
-            component: () => import('@/views/pages/studentDashboard/StudentDashboard.vue')
-        },
+
         {
             path: '/ChoicesLogin',
             name: 'ChoicesLogin',

@@ -1,11 +1,9 @@
 <script setup>
-import '@fortawesome/fontawesome-free/css/all.css';
-import ClassRouting from '../shared/ClassRouting.vue';
 import Calenders from '../shared/Calenders.vue';
-import Notice from '../shared/Notice.vue';
-import ExamList from '../shared/ExamList.vue';
+import ClassRouting from '../shared/ClassRouting.vue';
 import EventList from '../shared/EventList.vue';
-
+import ExamList from '../shared/ExamList.vue';
+import Notice from '../shared/Notice.vue';
 </script>
 <template>
     <div class="min-h-screen bg-gray-100 flex">
@@ -35,8 +33,3 @@ import EventList from '../shared/EventList.vue';
         </main>
     </div>
 </template>
-<style scoped>
-.material-icons {
-    font-size: 20px;
-}
-</style>
